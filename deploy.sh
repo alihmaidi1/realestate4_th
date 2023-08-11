@@ -6,17 +6,21 @@ echo "Deployment started ..."
 # Enter maintenance mode or return true
 # if already is in maintenance mode
 (php artisan down) || true
+echo "downed successfully"
 
 # Pull the latest version of the app
 git pull origin master
+echo "pulling successfully started ..."
 
 # Install composer dependencies
-composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+/usr/bin/php7.4 /usr/local/bin/composer install --no-dev
 
+echo "compoesr install"
 
 # Recreate cache
 php artisan optimize
 
+echo "clear cache started ..."
 
 
 # Exit maintenance mode
