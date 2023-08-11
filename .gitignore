@@ -5,8 +5,8 @@ public/attachments
 /storage/*.key
 /vendor
 
-./github
-.deploy.sh
+/.github
+deploy.sh
 
 # .env
 .env.backup
@@ -18,3 +18,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+.env
