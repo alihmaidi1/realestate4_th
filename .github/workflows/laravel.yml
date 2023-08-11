@@ -18,4 +18,4 @@ jobs:
         username: ${{secrets.USERNAME}}
         port: ${{secrets.PORT}}
         password: ${{secrets.SSHKEY}}
-        script: "whoami"
+        script: "cd /var/www/realestate.programmer23.store  && ./deploy.sh"
