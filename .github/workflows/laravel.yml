@@ -17,5 +17,5 @@ jobs:
         host: ${{secrets.HOST}}
         username: ${{secrets.USERNAME}}
         port: ${{secrets.PORT}}
-        key: ${{secrets.SSHKEY}}
-        script: "cd /var/www/adminres.programmer23.store && ./deploy.sh"
+        password: ${{secrets.SSHKEY}}
+        script: "cd /var/www/realestate.programmer23.store  && ./deploy.sh"
