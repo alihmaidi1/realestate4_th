@@ -1,0 +1,123 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+  PostController,
+  RoleController,
+  TypeController,
+  ReviewController,
+  CommentController,
+  CategoryController,
+  InformationController,
+  SearchController,
+};
+use App\Http\Controllers\Location\{
+  AreaController,
+  CityController,
+  CountryController
+};
+use App\Http\Controllers\Admin\Account\AdminController;
+use App\Http\Controllers\Admin\Account\Auth\AuthAdminController;
+use App\Http\Controllers\Admin\Account\Auth\EmailVerificationController;
+use App\Http\Controllers\Admin\Account\Auth\PasswordAdminController;
+
+// ##### To Guest #####
+Route::post('dashboard/login', [AuthAdminController::class, 'login'])->name('user.login');
+// To Change Password
+Route::post('send-email', [PasswordAdminController::class, 'sendEmail'])->name('send_email');
+Route::post('check-reset-code', [PasswordAdminController::class, 'checkResetCode'])->name('check-reset-code');
+Route::post('change-password', [PasswordAdminController::class, 'changePassword'])->name('change-password');
+
+// Register
+Route::post('users/create', [AdminController::class, 'create'])->name('create');
+// To Verify Email
+Route::get('/verification/{id}', [EmailVerificationController::class, 'verification']);
+Route::post('/verified', [EmailVerificationController::class, 'verifiedOtp'])->name('verifiedOtp');
+Route::get('/resend-otp', [EmailVerificationController::class, 'resendOtp'])->name('resendOtp');
+
+// To Change Password With Signed URL
+Route::post('signed/send-email', [PasswordAdminController::class, 'signedSendEmail'])->name('signed.send_email');
+Route::get('signed/check-reset-code', [PasswordAdminController::class, 'signedCheckResetCode'])->middleware('signed')->name('signed.check-reset-code');
+Route::post('signed/change-password', [PasswordAdminController::class, 'signedChangePassword'])->name('signed.change-password');
+
+// ##### Must be auth #####
+Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(function () {
+  // Logout
+  Route::post('logout', [AuthAdminController::class, 'logout'])->name('logout');
+
+  // Start Role
+  Route::prefix('roles')->as("role.")->group(function () {
+    Route::get('', [RoleController::class, 'index'])->name('index');
+    Route::get('show/{id?}', [RoleController::class, 'show'])->name('show');
+    Route::post('create', [RoleController::class, 'create'])->name('create');
+    Route::post('update/{id?}', [RoleController::class, 'update'])->name('update');
+    Route::delete('delete/{id?}', [RoleController::class, 'delete'])->name('delete');
+  });
+
+  // Start User (also Admin)
+  Route::get('user-profile', [AdminController::class, 'userProfile'])->name('user-profile');
+
+  Route::prefix('users')->as("user.")->group(function () {
+    Route::get('', [AdminController::class, 'index'])->name('index');
+    Route::get('show/{id?}', [AdminController::class, 'show'])->name('show');
+    Route::post('update', [AdminController::class, 'update'])->name('update');
+    Route::post('delete', [AdminController::class, 'delete'])->name('delete');
+    // Notification
+    Route::post('notifications-markAsRead', [AdminController::class, 'MarkAsRead_All']);
+    Route::post('notification-markAsRead/{notificationId?}', [AdminController::class, 'MarkAsRead_notification']);
+  });
+
+  // permissions
+  Route::get('get-all-permissions', [AdminController::class, 'getAllPermissions'])->name('get-all-permissions');
+
+  // Start Location
+  Route::prefix('countries')->as("country.")->group(function () {
+    Route::get('', [CountryController::class, 'index'])->name('index');
+    Route::get('show/{id?}', [CountryController::class, 'show'])->name('show');
+    Route::post('create', [CountryController::class, 'create'])->name('create');
+    Route::post('update/{id?}', [CountryController::class, 'update'])->name('update');
+    Route::delete('delete/{id?}', [CountryController::class, 'delete'])->name('delete');
+  });
+  Route::get('/cities-of-country/{countryId?}', [CityController::class, 'citiesOfCountry']);
+  Route::resource('cities', CityController::class);
+  Route::get('/areas-of-city/{cityId?}', [AreaController::class, 'areasOfCity']);
+  Route::resource('area', AreaController::class);
+
+  // Start Catecories
+  Route::prefix('categories')->as("category.")->group(function () {
+    Route::get('', [CategoryController::class, 'index'])->name('index');
+    Route::get('show/{category?}', [CategoryController::class, 'show'])->name('show');
+    Route::post('create', [CategoryController::class, 'create'])->name('create');
+    Route::post('update/{catecory?}', [CategoryController::class, 'update'])->name('update');
+    Route::delete('delete/{catecory?}', [CategoryController::class, 'delete'])->name('delete');
+  });
+
+  // Start Informations
+  Route::post('information/update/{catecory?}', [InformationController::class, 'update']);
+  Route::resource('information', InformationController::class);
+
+  // Start Posts
+  Route::post('/posts/{id?}', [PostController::class, 'update']);
+  Route::get('/posts-of-category/{categoryId?}', [PostController::class, 'postsOfCategory']);
+  Route::resource('post', PostController::class);
+
+  // Start favorite Posts
+  Route::post('/update-favorite-posts', [PostController::class, 'updateFavoritePost']);
+
+  // Start Comments
+  Route::resource('comments', CommentController::class);
+
+  // Start Types
+  Route::resource('types', TypeController::class);
+
+  // Start Review
+  Route::resource('reviews', ReviewController::class);
+
+  ////////////////////////////////////////////////////////////////
+  // Start Search
+  Route::post('search', SearchController::class);
+
+  // // add premuim (upgrad-user)
+  // Route::post('user/upgrade/silver', [UpgradeUserController::class, 'silver']);
+  // Route::post('user/upgrade/golden', [UpgradeUserController::class, 'golden']);
+});
