@@ -17,11 +17,22 @@ echo "pulling successfully started ..."
 
 echo "compoesr install"
 
+
 # Recreate cache
 php artisan optimize
 
 echo "clear cache started ..."
 
+
+php artisan migrate:refresh
+
+echo "database refresh"
+
+
+
+php artisan db:seed
+
+echo "databaase seeding"
 
 # Exit maintenance mode
 php artisan up
