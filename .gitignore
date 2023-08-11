@@ -4,6 +4,10 @@
 public/attachments
 /storage/*.key
 /vendor
+
+./github
+.deploy.sh
+
 # .env
 .env.backup
 .phpunit.result.cache
