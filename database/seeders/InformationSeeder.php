@@ -16,37 +16,150 @@ class InformationSeeder extends Seeder
   public function run(): void
   {
     $categories = [
-      "منزل",
-      "ارض",
-      "محل",
+      [
+        [
+          "name" => "apartment",
+          "image_url" => null,
+          "description" => "apartment"
+        ],
+        [
+          "name" => "land",
+          "image_url" => null,
+          "description" => "land"
+        ],
+        [
+          "name" => "villa",
+          "image_url" => null,
+          "description" => "villa"
+        ],
+        [
+          "name" => "market",
+          "image_url" => null,
+          "description" => "market"
+        ],
+        [
+          "name" => "farm",
+          "image_url" => null,
+          "description" => "farm"
+        ]
+      ]
     ];
     $informations = [
       [
-        ['عدد الاسرة'],
-        ['عدد الحمامات'],
-        ['يوجد حديقة'],
-        ['يوجد واي فاي'],
+        "name" => "price",
+        "category_id" => 1,
+        "code" => "0x11111"
       ],
       [
-        ['المساحة'],
-        ['طابو اخضر'],
+
+        "name" => "floor",
+        "category_id" => 1,
+        "code" => "0x11111"
       ],
       [
-        ['عدد الحمامات'],
-        ['عدد الواجهات'],
-        ['المساحة'],
-        ['طابو اخضر'],
-        ['الاتجاه'],
+
+        "name" => "rooms",
+        "category_id" => 1,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "direction",
+        "category_id" => 1,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "price",
+        "category_id" => 2,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "size",
+        "category_id" => 2,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "specification",
+        "category_id" => 2,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "price",
+        "category_id" => 3,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "floor",
+        "category_id" => 3,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "rooms",
+        "category_id" => 3,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "swimmingPool",
+        "category_id" => 3,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "garden",
+        "category_id" => 3,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "price",
+        "category_id" => 4,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "floor",
+        "category_id" => 4,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "storeHouse",
+        "category_id" => 4,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "size",
+        "category_id" => 4,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "price",
+        "category_id" => 5,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "playGround",
+        "category_id" => 5,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "section",
+        "category_id" => 5,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "rooms",
+        "category_id" => 5,
+        "code" => "0x11111"
+      ],
+      [
+        "name" => "swimmingPool",
+        "category_id" => 5,
+        "code" => "0x11111"
       ]
     ];
     foreach ($categories as $key => $category) {
       $created_category = Category::create(['name' => $category]);
       foreach ($informations[$key] as $info) {
-        // dd($info[1]);
         Information::create([
           'name' => $info[0],
-          'category_id' => $created_category->id,
-          'code' => "facke code",
+          'category_id' => $info[1],
+          'code' => $info[2],
         ]);
       }
     }

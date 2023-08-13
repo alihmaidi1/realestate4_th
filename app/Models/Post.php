@@ -55,7 +55,7 @@ class Post extends Model
   public function informations()
   {
     return $this->belongsToMany(Information::class, "information_posts")->withPivot('value');
-  }}
+  }
 
   public function getDiffInDayAttribute()
   {
