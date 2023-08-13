@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     $this->call(AreaSeeder::class);
     $this->call(TypeSeeder::class);
 
-    // $this->call(InformationSeeder::class);
+    $this->call(InformationSeeder::class);
     // $this->call(PostSeeder::class);
   }
 }

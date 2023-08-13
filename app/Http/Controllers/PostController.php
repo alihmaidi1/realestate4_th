@@ -81,6 +81,7 @@ class PostController extends Controller
       }
 
 
+
       // foreach ($request->types as $type) {
       //   $type = json_decode($type);
       //   $post->types()->attach([$type->id => [
