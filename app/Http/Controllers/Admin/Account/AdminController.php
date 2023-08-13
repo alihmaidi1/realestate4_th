@@ -11,6 +11,7 @@ use App\Http\Requests\Api\Admin\Operations\CreateAdminRequest;
 use App\Http\Requests\Api\Admin\Operations\DeleteAdminRequest;
 use App\Http\Requests\Api\Admin\Operations\UpdateAdminRequest;
 use App\Http\Resources\User\UserResource;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -93,5 +94,11 @@ class AdminController extends Controller
       return ApiResponseService::notFoundResponse();
     $notification->markAsRead();
     return ApiResponseService::successMsgResponse();
+  }
+
+  function userBlock()
+  {
+    aauth()->update(['status' => false]);
+    return ApiResponseService::successMsgResponse("تم حظر المستخدم بنجاح");
   }
 }

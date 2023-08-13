@@ -15,8 +15,6 @@ return new class extends Migration
       $table->id();
       $table->foreignId("user_id")->references("id")->on("users")->cascadeOnDelete();
       $table->foreignId("post_id")->nullable()->references("id")->on("posts")->cascadeOnDelete();
-      // $table->string("name");
-      // $table->string("email");
       $table->string("title");
       $table->enum("type", ['suggestion', 'complaint']);
       $table->timestamps();

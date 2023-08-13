@@ -26,11 +26,10 @@ class InformationSeeder extends Seeder
         ['عدد الحمامات'],
         ['يوجد حديقة'],
         ['يوجد واي فاي'],
-        ['عدد البرندات'],
-        ['رقم الطابق'],
+      ],
+      [
         ['المساحة'],
         ['طابو اخضر'],
-        ['الاتجاه'],
       ],
       [
         ['عدد الحمامات'],
@@ -38,20 +37,7 @@ class InformationSeeder extends Seeder
         ['المساحة'],
         ['طابو اخضر'],
         ['الاتجاه'],
-      ],
-      [
-        ['عدد الحمامات'],
-        ['عدد الواجهات'],
-        ['المساحة'],
-        ['طابو اخضر'],
-        ['الاتجاه'],
-      ],
-      [
-        ['مطلة على استراد'],
-        ['المساحة'],
-        ['طابو اخضر'],
-        ['نوع التربة'],
-      ],
+      ]
     ];
     foreach ($categories as $key => $category) {
       $created_category = Category::create(['name' => $category]);
@@ -60,6 +46,7 @@ class InformationSeeder extends Seeder
         Information::create([
           'name' => $info[0],
           'category_id' => $created_category->id,
+          'code' => "facke code",
         ]);
       }
     }

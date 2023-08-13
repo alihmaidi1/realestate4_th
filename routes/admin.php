@@ -113,11 +113,10 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
   // Start Review
   Route::resource('reviews', ReviewController::class);
 
-  ////////////////////////////////////////////////////////////////
-  // Start Search
-  Route::post('search', SearchController::class);
 
-  // // add premuim (upgrad-user)
-  // Route::post('user/upgrade/silver', [UpgradeUserController::class, 'silver']);
-  // Route::post('user/upgrade/golden', [UpgradeUserController::class, 'golden']);
+  // Start Search
+  Route::get('search', SearchController::class);
+
+  // block User
+  Route::get('user-block', [AdminController::class, 'userBlock'])->name('user-block');
 });

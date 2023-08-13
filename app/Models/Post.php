@@ -18,7 +18,6 @@ class Post extends Model
     'latitude',
     'description',
     'available',
-    'is_favorite',
     'image_main',
   ];
   protected $appends = ['diffInDay'];

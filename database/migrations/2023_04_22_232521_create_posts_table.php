@@ -21,7 +21,6 @@ return new class extends Migration
       $table->string("latitude");
       $table->string("image_main")->nullable();
       $table->boolean("available")->default(true);
-      $table->boolean('is_favorite')->default(false);
       $table->timestamps();
     });
   }

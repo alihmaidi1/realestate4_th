@@ -22,33 +22,35 @@ class PostSeeder extends Seeder
   {
     $faker = Factory::create('ar_SA');
 
-    $category = Category::inRandomOrder()->first();
-    $post = Post::create([
-      'user_id' => User::inRandomOrder()->first()->id,
-      'area_id' => Area::inRandomOrder()->first()->id,
-      'category_id' => $category->id,
-      'longitude' => mt_rand(99999, 999999999),
-      'latitude' => mt_rand(99999, 999999999),
-      'description' => $faker->text(),
-    ]);
+    for ($i = 0; $i < 2000; $i++) {
+      $category = Category::inRandomOrder()->first();
+      $post = Post::create([
+        'user_id' => User::inRandomOrder()->first()->id,
+        'area_id' => Area::inRandomOrder()->first()->id,
+        'category_id' => $category->id,
+        'longitude' => mt_rand(99999, 999999999),
+        'latitude' => mt_rand(99999, 999999999),
+        'description' => $faker->text(),
+        'image_main' => "image main",
+      ]);
+      foreach ($category->informations as $info) {
 
-    foreach ($category->informations as $info) {
+        // InformationPost::create([
+        //   'information_id' => $info->id,
+        //   'post_id' => $post->id,
+        //   'value' => "val from seeder " . $info->name,
+        // ]);
 
-      // InformationPost::create([
-      //   'information_id' => $info->id,
-      //   'post_id' => $post->id,
-      //   'value' => "val from seeder " . $info->name,
-      // ]);
+        $post->informations()->attach([$info->id => [
+          'value' => "val from seeder " . $info->name,
+        ]]);
+      }
 
-      $post->informations()->attach([$info->id => [
-        'value' => "val from seeder " . $info->name,
+      $post->types()->attach([Type::inRandomOrder()->first()->id => [
+        'price'      => mt_rand(100, 1000),
+        'start_date' => Carbon::now()->subDays(mt_rand(5, 50)),
+        'end_date'   => now()->addDays(mt_rand(5, 50)),
       ]]);
     }
-
-    $post->types()->attach([Type::inRandomOrder()->first()->id => [
-      'price'      => mt_rand(100, 1000),
-      'start_date' => Carbon::now()->subDays(mt_rand(5, 50)),
-      'end_date'   => now()->addDays(mt_rand(5, 50)),
-    ]]);
   }
 }

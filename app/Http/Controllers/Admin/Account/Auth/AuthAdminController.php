@@ -37,7 +37,7 @@ class AuthAdminController extends Controller
   {
     $user = User::where('email', $request->email)->first();
     if (!$user || !Hash::check($request->password, $user->password)) {
-      return ApiResponseService::errorMsgResponse(['UnAuthorised Access'], 401);
+      return ApiResponseService::errorMsgResponse(['password not correct'], 401);
     } else {
       $user_login_token = $user->createToken('MyApp')->plainTextToken;
       return ApiResponseService::successResponse(['token' => $user_login_token]);

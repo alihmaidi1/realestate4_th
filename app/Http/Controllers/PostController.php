@@ -17,11 +17,30 @@ class PostController extends Controller
    */
   public function index()
   {
-    // return ApiResponseService::successResponse(['posts' => Post::withAllRelations()->get()]);
     try {
-      return ApiResponseService::successResponse(['posts' =>  indexpostResource::collection(Post::withAllRelations()->get())]);
+      // $user_id = aauth()->id;
+      // $posts = Post::query()
+      //   ->select('posts.*', DB::raw('(CASE WHEN post_user.user_id IS NOT NULL THEN true ELSE false END) as is_favorite'))
+      //   ->leftJoin('post_user', function ($join) use ($user_id) {
+      //     $join->on('posts.id', '=', 'post_user.post_id')
+      //       ->where('post_user.user_id', '=', $user_id);
+      //   })
+      //   ->get();
+
+      $posts_with_favorites = Post::get();
+      $user_post_favorite = aauth()->favorite_posts;
+      foreach ($posts_with_favorites as $post) {
+        $post->is_favorite = false;
+        foreach ($user_post_favorite as $user_post) {
+          if ($user_post->id == $post->id) {
+            $post->is_favorite = true;
+            break;
+          }
+        }
+      }
+      return ApiResponseService::successResponse(['posts' =>  indexpostResource::collection($posts_with_favorites)]);
     } catch (\Throwable $th) {
-      dd($th->getMessage());
+      return ApiResponseService::errorMsgResponse($th->getMessage());
     }
   }
 
@@ -159,15 +178,13 @@ class PostController extends Controller
   {
     $user = $request->user();
     $post = Post::find($request->post_id);
-    if ($post) {
-      $post->update(['is_favorite' => $request->is_favorite]);
-      if ($request->is_favorite) {
-        $user->favorite_posts()->attach($request->post_id);
-        return ApiResponseService::successMsgResponse("تم الاضافة الى قائمة المفضلة");
-      }
-      $user->favorite_posts()->detach($request->post_id);
-      return ApiResponseService::successMsgResponse("تم الحذف من قائمة المفضلة");
-    } else
+    if (!$post)
       return ApiResponseService::notFoundResponse();
+    if ($request->is_favorite) {
+      $user->favorite_posts()->attach($request->post_id);
+      return ApiResponseService::successMsgResponse("تم الاضافة الى قائمة المفضلة");
+    }
+    $user->favorite_posts()->detach($request->post_id);
+    return ApiResponseService::successMsgResponse("تم الحذف من قائمة المفضلة");
   }
 }
