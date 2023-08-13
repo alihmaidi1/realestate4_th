@@ -80,14 +80,14 @@ class PostController extends Controller
         }
       }
 
-      foreach ($request->types as $type) {
-        $type = json_decode($type);
-        $post->types()->attach([$type->id => [
-          'price'      => $type->price,
-          'start_date' => $type->start_date,
-          'end_date'   => $type->end_date,
-        ]]);
-      }
+      // foreach ($request->types as $type) {
+      //   $type = json_decode($type);
+      //   $post->types()->attach([$type->id => [
+      //     'price'      => $type->price,
+      //     'start_date' => $type->start_date,
+      //     'end_date'   => $type->end_date,
+      //   ]]);
+      // }
 
       // Send notification to all users
       notifyUsers($request->area_id);
