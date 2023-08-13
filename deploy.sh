@@ -24,15 +24,15 @@ php artisan optimize
 echo "clear cache started ..."
 
 
-php artisan migrate:fresh
+# php artisan migrate:fresh
 
-echo "database fresh"
+# echo "database fresh"
 
 
 
-php artisan db:seed
+# php artisan db:seed
 
-echo "databaase seeding"
+# echo "databaase seeding"
 
 # Exit maintenance mode
 php artisan up
