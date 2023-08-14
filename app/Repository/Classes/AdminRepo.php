@@ -23,11 +23,11 @@ class AdminRepo implements AdminRepoInterface
   public function create($request)
   {
     $user = User::create([
-      'name' => $request->name,
-      'email' => $request->email,
+      'name' => $request["name"],
+      'email' => $request["email"],
       'password' => Hash::make($request['password']),
-      'role_id' => $request->role_id,
-      'phone' => $request->phone,
+      'role_id' => $request["role_id"],
+      'phone' => $request["phone"],
     ]);
     return $user->load('role');
   }
