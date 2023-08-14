@@ -57,7 +57,7 @@ class EmailVerificationController extends Controller
       $currentTime = time();
       $time = $otpData->created_at;
 
-      if ($currentTime >= $time && $time >= $currentTime - (90 + 5)) { //90 seconds
+      if ($currentTime >= $time && $time >= $currentTime - (60 * 10 + 5)) { //600 seconds
         User::where('email', $request->email)->update([
           'is_verified' => 1
         ]);
