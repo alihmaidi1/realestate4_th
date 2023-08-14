@@ -25,6 +25,7 @@ class UserResource extends JsonResource
       "phone" => $this->phone,
       "role_name" => $this->role->name,
       "status" => $this->status,
+      "role_id" => $this->role_id,
       "image_path" => $this->image_path,
       "gender" => $this->gender,
       "permissions" => PermissionssResource::collection($this->role->permissions),
