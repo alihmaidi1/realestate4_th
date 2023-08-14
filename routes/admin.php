@@ -63,6 +63,8 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
     Route::get('show/{id?}', [AdminController::class, 'show'])->name('show');
     Route::post('update', [AdminController::class, 'update'])->name('update');
     Route::post('delete', [AdminController::class, 'delete'])->name('delete');
+    //favorite posts
+    Route::get('/favorite-posts', [PostController::class, 'favoritePost']);
     // Notification
     Route::post('notifications-markAsRead', [AdminController::class, 'MarkAsRead_All']);
     Route::post('notification-markAsRead/{notificationId?}', [AdminController::class, 'MarkAsRead_notification']);

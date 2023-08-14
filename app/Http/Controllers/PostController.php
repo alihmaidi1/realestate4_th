@@ -182,4 +182,13 @@ class PostController extends Controller
     $user->favorite_posts()->detach($request->post_id);
     return ApiResponseService::successMsgResponse("تم الحذف من قائمة المفضلة");
   }
+
+  function favoritePost()
+  {
+    $posts = aauth()->favorite_posts;
+    foreach ($posts as $post) {
+      $post->is_favorite = true;
+    }
+    return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
+  }
 }

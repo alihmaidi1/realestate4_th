@@ -24,15 +24,6 @@ class ResetMail extends Mailable
     $this->SignedUrl = $SignedUrl;
   }
 
-  /**
-   * Get the message envelope.
-   */
-  public function envelope(): Envelope
-  {
-    return new Envelope(
-      subject: 'Reset Mail',
-    );
-  }
 
   public function build()
   {

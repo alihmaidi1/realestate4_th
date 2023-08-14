@@ -18,7 +18,8 @@ class CountryResource extends JsonResource
     return [
       "id" => $this->id,
       'name' => $this->name,
-      'cities' => CityResource::collection($this->whenLoaded('cities')),
+      'cities' => CityResource::collection($this->cities),
+      // 'cities' => CityResource::collection($this->whenLoaded('cities')),
     ];
   }
 }
