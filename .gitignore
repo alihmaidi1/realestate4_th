@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 public/attachments
+/storage/attachments
 /storage/*.key
 /vendor
 

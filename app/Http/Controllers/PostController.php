@@ -191,4 +191,20 @@ class PostController extends Controller
     }
     return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
   }
+
+  function accept(Request $request)
+  {
+    $post = Post::find($request->postId);
+    if (!$post)
+      return ApiResponseService::notFoundResponse('هذا البوست غير موجود');
+    $post->available = true;
+    $post->save();
+    return ApiResponseService::successMsgResponse("تم الموافقة على المنشور");
+  }
+
+  function pendingPost()
+  {
+    $posts = Post::where('available', false)->get();
+    return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
+  }
 }

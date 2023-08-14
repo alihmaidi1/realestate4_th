@@ -20,7 +20,7 @@ return new class extends Migration
       $table->string("longitude");
       $table->string("latitude");
       $table->string("image_main")->nullable();
-      $table->boolean("available")->default(true);
+      $table->boolean("available")->default(false);
       $table->timestamps();
     });
   }

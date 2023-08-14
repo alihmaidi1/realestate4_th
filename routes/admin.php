@@ -101,6 +101,8 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
 
   // Start Posts
   Route::post('/posts/create', [PostController::class, 'store']);
+  Route::post('/posts/accept', [PostController::class, 'accept']);
+  Route::get('/posts/pending', [PostController::class, 'pendingPost']);
   Route::get('/posts-of-category/{categoryId?}', [PostController::class, 'postsOfCategory']);
   Route::resource('post', PostController::class);
 
@@ -121,5 +123,5 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
   Route::get('search', SearchController::class);
 
   // block User
-  Route::get('user-block', [AdminController::class, 'userBlock'])->name('user-block');
+  Route::post('user-block', [AdminController::class, 'userBlock'])->name('user-block');
 });

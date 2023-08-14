@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin\Account;
 
-use App\Http\Controllers\Admin\Account\Auth\EmailVerificationController;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ApiResponseService;
 use Illuminate\Support\Facades\Config;
+use App\Http\Resources\User\UserResource;
 use App\Repository\Interfaces\AdminRepoInterface;
 use App\Http\Requests\Api\Admin\Operations\CreateAdminRequest;
 use App\Http\Requests\Api\Admin\Operations\DeleteAdminRequest;
 use App\Http\Requests\Api\Admin\Operations\UpdateAdminRequest;
-use App\Http\Resources\User\UserResource;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\Account\Auth\EmailVerificationController;
 
 class AdminController extends Controller
 {
@@ -96,9 +97,12 @@ class AdminController extends Controller
     return ApiResponseService::successMsgResponse();
   }
 
-  function userBlock()
+  function userBlock(Request $request)
   {
-    aauth()->update(['status' => false]);
+    $user = User::find($request->id);
+    if (!$user)
+      return ApiResponseService::notFoundResponse("هذا المستخدم غير موجود");
+    $user->update(['status' => false]);
     return ApiResponseService::successMsgResponse("تم حظر المستخدم بنجاح");
   }
 }
