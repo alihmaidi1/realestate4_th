@@ -62,7 +62,10 @@ class EmailVerificationController extends Controller
           'is_verified' => 1
         ]);
         $otpData->delete();
-        return ApiResponseService::successResponse('Mail has been verified');
+        // return ApiResponseService::successResponse('Mail has been verified');
+        $user = User::where('email', $request->email)->first();
+        $user_login_token = $user->createToken('MyApp')->plainTextToken;
+        return ApiResponseService::successResponse(['token' => $user_login_token]);
       } else {
         return ApiResponseService::errorMsgResponse('Your OTP has been Expired');
       }
