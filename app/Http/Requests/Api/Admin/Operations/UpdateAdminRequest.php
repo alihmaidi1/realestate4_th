@@ -25,9 +25,8 @@ class UpdateAdminRequest extends FormRequest
   public function rules(): array
   {
     return [
-      "id" => "required|exists:users,id",
       "name" => "required",
-      "email" => "required|email|unique:users,email," . $this->id,
+      "email" => "email|unique:users,email," . aauth()->id,
       "role_id" => "required|exists:roles,id",
       "phone" => "required",
       "image" => "sometimes",

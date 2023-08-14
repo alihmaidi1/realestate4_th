@@ -34,16 +34,15 @@ class AdminRepo implements AdminRepoInterface
   // Update
   public function update($request)
   {
-    $user =  $this->get($request["id"]);
-
+    $user = User::find(aauth()->id);
     $user->update([
       "name" => $request["name"],
-      "email" => $request["email"],
       "role_id" => $request["role_id"],
       "phone" => $request["phone"],
       "image_path" => uploadImage($request["image"], 'users/' . $user->id, 'attachments'),
       "gender" => $request["gender"],
     ]);
+
     return $user;
   }
   // Delete

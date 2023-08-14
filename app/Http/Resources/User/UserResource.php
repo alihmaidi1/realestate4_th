@@ -29,7 +29,7 @@ class UserResource extends JsonResource
       "gender" => $this->gender,
       "permissions" => PermissionssResource::collection($this->role->permissions),
       "posts" => indexpostResource::collection($this->posts),
-      "comments" => CommentsResource::collection($this->comments),
+      // "comments" => CommentsResource::collection($this->comments),
       "notifications" => NotificationResource::collection($this->unreadNotifications),
       "favorite_posts" => indexpostResource::collection($this->favorite_posts),
     ];
