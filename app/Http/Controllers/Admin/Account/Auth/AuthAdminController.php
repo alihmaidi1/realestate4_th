@@ -25,7 +25,7 @@ class AuthAdminController extends Controller
     // }
 
     $input = $request->validated();
-    $input['password'] = bcrypt($input['password']);
+    $input['password'] = Hash::make($input['password']);
     $user = User::create($input);
     $success['token'] =  $user->createToken('MyApp')->plainTextToken;
     $success['name'] =  $user->name;
