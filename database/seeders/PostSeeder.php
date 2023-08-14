@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
   {
     $faker = Factory::create('ar_SA');
 
-    for ($i = 0; $i < 2000; $i++) {
+    for ($i = 0; $i < 100; $i++) {
       $category = Category::inRandomOrder()->first();
       $post = Post::create([
         'user_id' => User::inRandomOrder()->first()->id,
@@ -31,7 +31,7 @@ class PostSeeder extends Seeder
         'longitude' => mt_rand(99999, 999999999),
         'latitude' => mt_rand(99999, 999999999),
         'description' => $faker->text(),
-        'image_main' => "image main",
+        'available' => rand(0, 1),
       ]);
       foreach ($category->informations as $info) {
 

@@ -118,7 +118,6 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
   // Start Review
   Route::resource('reviews', ReviewController::class);
 
-
   // Start Search
   Route::get('search', SearchController::class);
 
