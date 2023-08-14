@@ -152,19 +152,18 @@ class InformationSeeder extends Seeder
       ]
     ];
     foreach ($categories as $key => $category) {
-      $created_category = Category::create([
+      Category::create([
         'name' => $category['name'],
         'image_url' => $category['image_url'],
         'description' => $category['description']
       ]);
-      foreach ($informations as $i => $info) {
-        // dd($info['code']);
-        Information::create([
-          'name' => $info['name'],
-          'category_id' => $created_category->id,
-          'code' => $info['code'],
-        ]);
-      }
+    }
+    foreach ($informations as $i => $info) {
+      Information::create([
+        'name' => $info['name'],
+        'category_id' => $info['category_id'],
+        'code' => $info['code'],
+      ]);
     }
   }
 }
