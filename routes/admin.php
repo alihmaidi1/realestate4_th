@@ -30,7 +30,7 @@ Route::post('change-password', [PasswordAdminController::class, 'changePassword'
 
 // Register
 Route::post('users/create', [AdminController::class, 'create'])->name('create');
-Route::post('users/create', [AuthAdminController::class, 'register'])->name('create');
+// Route::post('users/create', [AuthAdminController::class, 'register'])->name('create');
 // To Verify Email
 Route::get('/verification/{id}', [EmailVerificationController::class, 'verification']);
 Route::post('/verified', [EmailVerificationController::class, 'verifiedOtp'])->name('verifiedOtp');
