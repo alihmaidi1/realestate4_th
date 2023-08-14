@@ -17,31 +17,29 @@ class InformationSeeder extends Seeder
   {
     $categories = [
       [
-        [
-          "name" => "apartment",
-          "image_url" => null,
-          "description" => "apartment"
-        ],
-        [
-          "name" => "land",
-          "image_url" => null,
-          "description" => "land"
-        ],
-        [
-          "name" => "villa",
-          "image_url" => null,
-          "description" => "villa"
-        ],
-        [
-          "name" => "market",
-          "image_url" => null,
-          "description" => "market"
-        ],
-        [
-          "name" => "farm",
-          "image_url" => null,
-          "description" => "farm"
-        ]
+        "name" => "apartment",
+        "image_url" => null,
+        "description" => "apartment"
+      ],
+      [
+        "name" => "land",
+        "image_url" => null,
+        "description" => "land"
+      ],
+      [
+        "name" => "villa",
+        "image_url" => null,
+        "description" => "villa"
+      ],
+      [
+        "name" => "market",
+        "image_url" => null,
+        "description" => "market"
+      ],
+      [
+        "name" => "farm",
+        "image_url" => null,
+        "description" => "farm"
       ]
     ];
     $informations = [
@@ -154,12 +152,17 @@ class InformationSeeder extends Seeder
       ]
     ];
     foreach ($categories as $key => $category) {
-      $created_category = Category::create(['name' => $category]);
-      foreach ($informations[$key] as $info) {
+      $created_category = Category::create([
+        'name' => $category['name'],
+        'image_url' => $category['image_url'],
+        'description' => $category['description']
+      ]);
+      foreach ($informations as $i => $info) {
+        // dd($info['code']);
         Information::create([
-          'name' => $info[0],
-          'category_id' => $info[1],
-          'code' => $info[2],
+          'name' => $info['name'],
+          'category_id' => $created_category->id,
+          'code' => $info['code'],
         ]);
       }
     }
