@@ -49,13 +49,11 @@ class InformationSeeder extends Seeder
         "code" => "0x11111"
       ],
       [
-
         "name" => "floor",
         "category_id" => 1,
         "code" => "0x11111"
       ],
       [
-
         "name" => "rooms",
         "category_id" => 1,
         "code" => "0x11111"
@@ -68,12 +66,12 @@ class InformationSeeder extends Seeder
       [
         "name" => "price",
         "category_id" => 2,
-        "code" => "0x11111"
+        "code" => "0xe570"
       ],
       [
         "name" => "size",
         "category_id" => 2,
-        "code" => "0x11111"
+        "code" => "0xf29f"
       ],
       [
         "name" => "specification",
@@ -83,7 +81,7 @@ class InformationSeeder extends Seeder
       [
         "name" => "price",
         "category_id" => 3,
-        "code" => "0x11111"
+        "code" => "0xe570"
       ],
       [
         "name" => "floor",

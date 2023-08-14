@@ -20,6 +20,9 @@ class PostSeeder extends Seeder
    */
   public function run(): void
   {
+
+    // Post::factory()->count(10)->create();
+
     $faker = Factory::create('ar_SA');
 
     for ($i = 0; $i < 100; $i++) {
@@ -32,6 +35,7 @@ class PostSeeder extends Seeder
         'latitude' => mt_rand(99999, 999999999),
         'description' => $faker->text(),
         'available' => rand(0, 1),
+        'image_main' => $faker->imageUrl(),
       ]);
       foreach ($category->informations as $info) {
 
