@@ -24,9 +24,13 @@ class AuthAdminController extends Controller
     //   return ApiResponseService::errorMsgResponse($validator->errors());
     // }
 
-    $input = $request->validated();
-    $input['password'] = Hash::make($input['password']);
-    $user = User::create($input);
+    $user = User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => Hash::make($request['password']),
+      'role_id' => $request->role_id,
+      'phone' => $request->phone,
+    ]);
     $success['token'] =  $user->createToken('MyApp')->plainTextToken;
     $success['name'] =  $user->name;
 
