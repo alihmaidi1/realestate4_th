@@ -97,7 +97,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
   Route::resource('information', InformationController::class);
 
   // Start Posts
-  Route::post('/posts/{id?}', [PostController::class, 'update']);
+  Route::post('/posts/create', [PostController::class, 'store']);
   Route::get('/posts-of-category/{categoryId?}', [PostController::class, 'postsOfCategory']);
   Route::resource('post', PostController::class);
 

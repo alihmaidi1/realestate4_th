@@ -60,14 +60,11 @@ class PostController extends Controller
         'image_main' => uploadImage($request->imageMain, 'posts/' . $post->id, 'attachments')
       ]);
 
-      foreach ($request->informations as $info) {
-        $info = json_decode($info);
-        $post->informations()->attach([$info->id => [
-          'value' => $info->value,
+      foreach (json_decode($request->informationsId) as $key => $id) {
+        $post->informations()->attach([$id => [
+          'value' => json_decode($request->informationsVal)[$key],
         ]]);
       }
-      // OR
-
 
       // Handle image uploads
       if ($request->hasFile('images')) {
