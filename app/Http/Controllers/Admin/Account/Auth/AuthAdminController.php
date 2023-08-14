@@ -31,10 +31,9 @@ class AuthAdminController extends Controller
       'role_id' => $request->role_id,
       'phone' => $request->phone,
     ]);
-    $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-    $success['name'] =  $user->name;
+    // $success['token'] =  $user->createToken('MyApp')->plainTextToken;
 
-    return ApiResponseService::successResponse(['user' => $success]);
+    return ApiResponseService::successResponse(['user' => $user]);
   }
 
   public function login(LoginRequest $request)

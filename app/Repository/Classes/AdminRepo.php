@@ -4,6 +4,7 @@ namespace App\Repository\Classes;
 
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use App\Repository\Interfaces\AdminRepoInterface;
 
 class AdminRepo implements AdminRepoInterface
@@ -21,7 +22,13 @@ class AdminRepo implements AdminRepoInterface
   // Create
   public function create($request)
   {
-    $user = User::create($request);
+    $user = User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => Hash::make($request['password']),
+      'role_id' => $request->role_id,
+      'phone' => $request->phone,
+    ]);
     return $user->load('role');
   }
   // Update
