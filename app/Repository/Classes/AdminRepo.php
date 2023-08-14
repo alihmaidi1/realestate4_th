@@ -37,9 +37,9 @@ class AdminRepo implements AdminRepoInterface
     $user = User::find(aauth()->id);
     $user->update([
       "name" => $request["name"],
-      "role_id" => $request["role_id"],
       "phone" => $request["phone"],
-      "image_path" => uploadImage($request["image"], 'users/' . $user->id, 'attachments'),
+      "email" => $request["email"],
+      // "image_path" => uploadImage($request["image"], 'users/' . $user->id, 'attachments'),
       "gender" => $request["gender"],
     ]);
 
