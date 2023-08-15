@@ -6,8 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ApiResponseService;
-use Illuminate\Support\Facades\Config;
 use App\Http\Resources\User\UserResource;
+use App\Notifications\BlockUserNotification;
+use Illuminate\Support\Facades\Notification;
 use App\Repository\Interfaces\AdminRepoInterface;
 use App\Http\Requests\Api\Admin\Operations\CreateAdminRequest;
 use App\Http\Requests\Api\Admin\Operations\DeleteAdminRequest;
@@ -103,6 +104,7 @@ class AdminController extends Controller
     if (!$user)
       return ApiResponseService::notFoundResponse("هذا المستخدم غير موجود");
     $user->update(['status' => false]);
+    Notification::send($user, new BlockUserNotification());
     return ApiResponseService::successMsgResponse("تم حظر المستخدم بنجاح");
   }
 }
