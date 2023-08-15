@@ -4,14 +4,13 @@ namespace Database\Seeders;
 
 use Faker\Factory;
 use App\Models\Category;
-use App\Models\InformationPost;
 use App\Models\Location\Area;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 
 class PostSeeder extends Seeder
 {
@@ -20,9 +19,6 @@ class PostSeeder extends Seeder
    */
   public function run(): void
   {
-
-    // Post::factory()->count(10)->create();
-
     $faker = Factory::create('ar_SA');
 
     for ($i = 0; $i < 100; $i++) {
@@ -39,7 +35,7 @@ class PostSeeder extends Seeder
 
       ]);
 
-      
+
       for ($j = 0; $j < rand(2, 5); $j++) {
         $path = $faker->imageUrl();
         // Create a new image record and associate it with the post
