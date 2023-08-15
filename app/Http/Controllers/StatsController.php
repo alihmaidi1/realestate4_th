@@ -20,10 +20,10 @@ class StatsController extends Controller
   {
     $stats['count_users'] = User::count();
     $stats['count_posts'] = Post::count();
-    $stats['last3_users'] = User::last()->take('3')->get();
-    $stats['last3_posts'] = Post::last()->take('3')->get();
-    $stats['last3_suggestion'] = Review::last()->where('type', 'suggestion')->take('3')->get();
-    $stats['last3_complaint'] = Review::last()->where('type', 'complaint')->take('3')->get(); //شكوى
+    $stats['last3_users'] = User::latest()->take('3')->get();
+    $stats['last3_posts'] = Post::latest()->take('3')->get();
+    $stats['last3_suggestion'] = Review::latest()->where('type', 'suggestion')->take('3')->get();
+    $stats['last3_complaint'] = Review::latest()->where('type', 'complaint')->take('3')->get(); //شكوى
     return ApiResponseService::successResponse($stats);
   }
 }
