@@ -101,6 +101,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
 
   // Start Posts
   Route::post('/posts/create', [PostController::class, 'store']);
+
   Route::post('/posts/accept', [PostController::class, 'accept']);
   Route::get('/posts/pending', [PostController::class, 'pendingPost']);
   Route::get('/posts-of-category/{categoryId?}', [PostController::class, 'postsOfCategory']);
