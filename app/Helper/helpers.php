@@ -38,8 +38,8 @@ if (!function_exists('uploadImage')) {
   function uploadImage($image, $folder, $diskName = "local")
   {
     $filename = time() . rand(0, 9999999) . "." . $image->getClientOriginalExtension();
-    Storage::disk($diskName)->put($folder . '/' . $filename, file_get_contents($image));
-    $path = storage_path('attachments') . '/' . $folder . '/' . $filename;
+    Storage::disk('local')->put($folder . '/' . $filename, file_get_contents($image));
+    $path = storage_path('app/public/') . $folder . '/' . $filename;
     return $path;
   }
 }
