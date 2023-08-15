@@ -39,6 +39,7 @@ class PostSeeder extends Seeder
 
       ]);
 
+      
       for ($j = 0; $j < rand(2, 5); $j++) {
         $path = $faker->imageUrl();
         // Create a new image record and associate it with the post
