@@ -26,6 +26,7 @@ class indexpostResource extends JsonResource
       "available" => $this->available,
       "diffInDay" => $this->diffInDay,
       "image_main" => $this->image_main,
+      "user_id" => $this->user_id,
       "user_name" => $this->his_user->name,
       "area" => $this->area->name,
       "city" => $this->area->city->name,

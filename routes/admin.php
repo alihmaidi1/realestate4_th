@@ -10,6 +10,7 @@ use App\Http\Controllers\{
   CategoryController,
   InformationController,
   SearchController,
+    StatsController,
 };
 use App\Http\Controllers\Location\{
   AreaController,
@@ -124,4 +125,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
 
   // block User
   Route::post('user-block', [AdminController::class, 'userBlock'])->name('user-block');
+
+  // stats
+  Route::get('stats', StatsController::class);
 });

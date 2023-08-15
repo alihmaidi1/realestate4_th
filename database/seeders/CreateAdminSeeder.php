@@ -15,7 +15,7 @@ class CreateAdminSeeder extends Seeder
   public function run(): void
   {
     User::insertOrIgnore([
-      'name' => 'Bashar',
+      'name' => 'Bashar&&Bkaya',
       'email' => 'bashar@gmail.com',
       'password' => Hash::make('123456789'),
       'is_verified' => true,
