@@ -50,7 +50,7 @@ class CommentController extends Controller
 
       // Send notification to all users
       //  event(new ChatMessageWasReceived($comment));
-      Notification::send($comment, new MyEvent($comment));
+      // Notification::send($comment, new MyEvent($comment));
 
       return ApiResponseService::successResponse(["comment" => new CommentsResource($comment)]);
     } catch (\Throwable $th) {
