@@ -2,14 +2,16 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
 use Faker\Factory;
+use App\Models\Category;
+use App\Models\InformationPost;
+use App\Models\Location\Area;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\User;
-use App\Models\Category;
-use App\Models\Location\Area;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
 class PostSeeder extends Seeder
@@ -19,6 +21,9 @@ class PostSeeder extends Seeder
    */
   public function run(): void
   {
+
+    // Post::factory()->count(10)->create();
+
     $faker = Factory::create('ar_SA');
 
     for ($i = 0; $i < 100; $i++) {
