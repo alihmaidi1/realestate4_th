@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Faker\Factory;
-use App\Models\Category;
-use App\Models\Location\Area;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\User;
-use Carbon\Carbon;
+use App\Models\Category;
+use App\Models\Location\Area;
 use Illuminate\Database\Seeder;
 
 
