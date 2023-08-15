@@ -66,4 +66,9 @@ class Post extends Model
   {
     return $query->with(['his_user', 'area', 'category', 'comments', 'images', 'informations', 'types']);
   }
+
+  public function scopeWithoutAvailable($query)
+  {
+    return $query->where('available', true);
+  }
 }

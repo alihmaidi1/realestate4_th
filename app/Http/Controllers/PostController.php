@@ -27,7 +27,7 @@ class PostController extends Controller
       //   })
       //   ->get();
 
-      $posts_with_favorites = Post::get();
+      $posts_with_favorites = Post::where('available', true)->get();
       $user_post_favorite = aauth()->favorite_posts;
       foreach ($posts_with_favorites as $post) {
         $post->is_favorite = false;
