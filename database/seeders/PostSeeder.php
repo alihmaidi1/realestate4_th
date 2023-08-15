@@ -24,7 +24,6 @@ class PostSeeder extends Seeder
 
     // Post::factory()->count(10)->create();
 
-    $faker = Factory::create('ar_SA');
 
     for ($i = 0; $i < 100; $i++) {
       $category = Category::inRandomOrder()->first();
@@ -34,20 +33,9 @@ class PostSeeder extends Seeder
         'category_id' => $category->id,
         'longitude' => mt_rand(99999, 999999999),
         'latitude' => mt_rand(99999, 999999999),
-        'description' => $faker->text(),
+        'description' => "description",
         'available' => rand(0, 1),
-        'image_main' => $faker->imageUrl(),
-
       ]);
-
-
-      for ($j = 0; $j < rand(2, 5); $j++) {
-        $path = $faker->imageUrl();
-        // Create a new image record and associate it with the post
-        $post->images()->create([
-          'path' => $path,
-        ]);
-      }
 
       foreach ($category->informations as $info) {
 

@@ -21,6 +21,7 @@ class CreateAdminSeeder extends Seeder
       'is_verified' => true,
       'phone' => '+9639' . $this->generateNumbers(8),
       'role_id' => Role::first()->id,
+      'gender' => 'male',
     ]);
   }
 
