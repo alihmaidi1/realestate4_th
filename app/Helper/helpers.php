@@ -39,7 +39,7 @@ if (!function_exists('uploadImage')) {
   {
     $filename = time() . rand(0, 9999999) . "." . $image->getClientOriginalExtension();
     Storage::disk('local')->put($folder . '/' . $filename, file_get_contents($image));
-    $path = storage_path('app/public/') . $folder . '/' . $filename;
+    $path = '/storage/' . $folder . '/' . $filename;
     return $path;
   }
 }
