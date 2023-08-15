@@ -34,6 +34,9 @@ php artisan db:seed
 
 echo "databaase seeding"
 
+
+php artisan store:link
+
 # Exit maintenance mode
 php artisan up
 
