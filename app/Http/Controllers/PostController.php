@@ -205,6 +205,7 @@ class PostController extends Controller
   function pendingPost()
   {
     $posts = Post::where('available', false)->get();
-    return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
+    $posts_count = count($posts);
+    return ApiResponseService::successResponse(['posts_coun' => $posts_count, 'posts' => indexpostResource::collection($posts)]);
   }
 }

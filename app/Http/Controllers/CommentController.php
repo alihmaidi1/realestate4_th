@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ChatMessageWasReceived;
+use App\Events\Message;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Notifications\MyEvent;
@@ -48,9 +49,8 @@ class CommentController extends Controller
         'content' => $request->content,
       ]);
 
-      // Send notification to all users
-      //  event(new ChatMessageWasReceived($comment));
-      // Notification::send($comment, new MyEvent($comment));
+      // Send realtime event to all users
+      event(new Message('message', 'username'));
 
       return ApiResponseService::successResponse(["comment" => new CommentsResource($comment)]);
     } catch (\Throwable $th) {
