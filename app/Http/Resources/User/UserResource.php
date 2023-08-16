@@ -33,6 +33,7 @@ class UserResource extends JsonResource
       "posts" => indexpostResource::collection($this->posts),
       // "comments" => CommentsResource::collection($this->comments),
       "notifications" => NotificationResource::collection($this->unreadNotifications),
+      "notifications_count" => $this->unreadNotifications->count(),
       // "favorite_posts" => indexpostResource::collection($this->favorite_posts),
     ];
   }
