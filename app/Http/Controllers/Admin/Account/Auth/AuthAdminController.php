@@ -44,7 +44,7 @@ class AuthAdminController extends Controller
       return ApiResponseService::errorMsgResponse(['password not correct'], 401);
     } else {
       $user->user_login_token = $user->createToken('MyApp')->plainTextToken;
-      return ApiResponseService::successResponse(['user' => new UserResource($user)]);
+      return ApiResponseService::successResponse(['user' => $user]);
     }
   }
 
