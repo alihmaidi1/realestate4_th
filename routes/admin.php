@@ -8,6 +8,7 @@ use App\Http\Controllers\{
   ReviewController,
   CommentController,
   CategoryController,
+  ChatController,
   InformationController,
   SearchController,
   StatsController,
@@ -21,6 +22,7 @@ use App\Http\Controllers\Admin\Account\AdminController;
 use App\Http\Controllers\Admin\Account\Auth\AuthAdminController;
 use App\Http\Controllers\Admin\Account\Auth\EmailVerificationController;
 use App\Http\Controllers\Admin\Account\Auth\PasswordAdminController;
+use App\Services\ApiResponseService;
 
 // ##### To Guest #####
 Route::post('dashboard/login', [AuthAdminController::class, 'login'])->name('user.login')->middleware('is.verified');
@@ -128,4 +130,14 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
 
   // stats
   Route::get('stats', StatsController::class);
+
+  // Chats
+  Route::post('chat', [ChatController::class, 'index']);
+  Route::post('chat/message', [ChatController::class, 'store']);
+});
+
+
+// ### Route 404 ###
+Route::fallback(function () {
+  return ApiResponseService::notFoundResponse("this url is not found");
 });

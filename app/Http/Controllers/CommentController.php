@@ -50,7 +50,7 @@ class CommentController extends Controller
       ]);
 
       // Send realtime event to all users
-      event(new Message('message', 'username'));
+      event(new Message($request->content, aauth()->name));
 
       return ApiResponseService::successResponse(["comment" => new CommentsResource($comment)]);
     } catch (\Throwable $th) {

@@ -18,6 +18,13 @@ return [
     "comment" => ["en" => "operations on comment", "ar" => "العمليات على التعليقات"],
     "type" => ["en" => "operations on type", "ar" => "العمليات على الانواع"],
     "upgrad-user" => ["en" => "operation upgrad user", "ar" => "عملية ترقية مستخدم"],
+    "chat" => ["en" => "operations on comment", "ar" => "العمليات على المحادثة"],
+  ],
+
+  "user_permissions" => [
+    "post" => ["en" => "operations on post", "ar" => "العمليات على البوستات"],
+    "comment" => ["en" => "operations on comment", "ar" => "العمليات على التعليقات"],
+    "chat" => ["en" => "operations on comment", "ar" => "العمليات على المحادثة"],
   ],
 
   "genders" => [

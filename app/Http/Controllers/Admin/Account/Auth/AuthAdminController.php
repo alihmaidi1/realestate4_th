@@ -8,6 +8,7 @@ use App\Services\ApiResponseService;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Api\Admin\Account\Auth\LoginRequest;
 use App\Http\Requests\Api\Admin\Account\Auth\RegisterRequest;
+use App\Http\Resources\User\UserResource;
 
 class AuthAdminController extends Controller
 {
@@ -43,7 +44,7 @@ class AuthAdminController extends Controller
       return ApiResponseService::errorMsgResponse(['password not correct'], 401);
     } else {
       $user->user_login_token = $user->createToken('MyApp')->plainTextToken;
-      return ApiResponseService::successResponse(['user' => $user]);
+      return ApiResponseService::successResponse(['user' => new UserResource($user)]);
     }
   }
 

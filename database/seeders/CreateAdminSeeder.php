@@ -23,6 +23,16 @@ class CreateAdminSeeder extends Seeder
       'role_id' => Role::first()->id,
       'gender' => 'male',
     ]);
+
+    User::insertOrIgnore([
+      'name' => 'user&&darwish',
+      'email' => 'user@gmail.com',
+      'password' => Hash::make('123456789'),
+      'is_verified' => true,
+      'phone' => '+9639' . $this->generateNumbers(8),
+      'role_id' => 2,
+      'gender' => 'male',
+    ]);
   }
 
   public function generateNumbers($strength = 3)
