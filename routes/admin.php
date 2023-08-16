@@ -10,7 +10,7 @@ use App\Http\Controllers\{
   CategoryController,
   InformationController,
   SearchController,
-    StatsController,
+  StatsController,
 };
 use App\Http\Controllers\Location\{
   AreaController,
@@ -23,7 +23,7 @@ use App\Http\Controllers\Admin\Account\Auth\EmailVerificationController;
 use App\Http\Controllers\Admin\Account\Auth\PasswordAdminController;
 
 // ##### To Guest #####
-Route::post('dashboard/login', [AuthAdminController::class, 'login'])->name('user.login');
+Route::post('dashboard/login', [AuthAdminController::class, 'login'])->name('user.login')->middleware('is.verified');
 // To Change Password
 Route::post('send-email', [PasswordAdminController::class, 'sendEmail'])->name('send_email');
 Route::post('check-reset-code', [PasswordAdminController::class, 'checkResetCode'])->name('check-reset-code');
