@@ -41,6 +41,7 @@ class AdminRepo implements AdminRepoInterface
       "email" => $request["email"],
       // "image_path" => uploadImage($request["image"], 'users/' . $user->id, 'attachments'),
       "gender" => $request["gender"],
+      "role_id" => $request["role_id"],
     ]);
 
     return $user;

@@ -30,7 +30,7 @@ class ReviewController extends Controller
       $review = Review::create([
         // 'user_id' => $request->user_id,
         'user_id' => aauth()->id,
-        'post_id' => $request->post_id,
+        'post_id' => $request->post_id ?? null,
         'title' => $request->title,
         'type' => $request->type,
       ]);
@@ -77,9 +77,8 @@ class ReviewController extends Controller
   //   }
   // }
 
-  /**
-   * Remove the specified resource from storage.
-   */
+
+
   public function destroy($review)
   {
     $review = Review::find($review);
