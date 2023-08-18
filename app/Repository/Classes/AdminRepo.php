@@ -39,11 +39,11 @@ class AdminRepo implements AdminRepoInterface
       "name" => $request["name"],
       "phone" => $request["phone"],
       "email" => $request["email"],
-      // "image_path" => uploadImage($request["image"], 'users/' . $user->id, 'attachments'),
       "gender" => $request["gender"],
       "role_id" => $request["role_id"],
     ]);
-
+    if ($request["image_path"])
+      $user->image_path = uploadImage($request["image"], 'users/' . $user->id, 'attachments');
     return $user;
   }
   // Delete

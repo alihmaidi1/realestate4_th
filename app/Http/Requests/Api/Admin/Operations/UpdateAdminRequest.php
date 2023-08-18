@@ -30,6 +30,7 @@ class UpdateAdminRequest extends FormRequest
       "phone" => "required",
       'gender' => 'required|in:male,female,other',
       'role_id' => 'required|exists:roles,id',
+      "image_path" =>  'image',
     ];
   }
 
