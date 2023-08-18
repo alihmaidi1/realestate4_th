@@ -133,6 +133,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
 
   // Chats
   Route::post('chat', [ChatController::class, 'index']);
+  Route::get('chat/users', [ChatController::class, 'users']);
   Route::post('chat/message', [ChatController::class, 'store']);
 });
 

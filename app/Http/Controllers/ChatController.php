@@ -7,9 +7,18 @@ use App\Events\ChatMessage;
 use Illuminate\Http\Request;
 use App\Services\ApiResponseService;
 use App\Http\Resources\Chat\ChatResource;
+use App\Http\Resources\Chat\UsersResource;
+use App\Models\ParentChat;
 
 class ChatController extends Controller
 {
+  function users(Request $request)
+  {
+    $users = ParentChat::where('from_user', aauth()->id)->orWhere('to_user', aauth()->id)
+      ->orderBy('created_at', 'ASC')->get();
+    return ApiResponseService::successResponse(["users" => UsersResource::collection($users)]);
+  }
+
   function index(Request $request)
   {
     if (!$request->user_id) {
@@ -28,6 +37,19 @@ class ChatController extends Controller
   function store(Request $request)
   {
     try {
+      $user = ParentChat::where(function ($q) use ($request) {
+        $q->where('from_user', $request->user_id)
+          ->where('to_user', aauth()->id);
+      })->orWhere(function ($q) use ($request) {
+        $q->where('from_user', aauth()->id)
+          ->where('to_user', $request->user_id);
+      })->count();
+      if ($user != 1) {
+        ParentChat::create([
+          'from_user' => aauth()->id,
+          'to_user' => $request->to_user,
+        ]);
+      }
       $chat = Chat::create([
         'from_user' => aauth()->id,
         'to_user' => $request->to_user,
