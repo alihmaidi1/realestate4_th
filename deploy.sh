@@ -23,7 +23,7 @@ php artisan optimize
 
 echo "clear cache started ..."
 
-
+php artisan migrate
 # php artisan migrate:fresh
 
 # echo "database fresh"
