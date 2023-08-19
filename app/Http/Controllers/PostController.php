@@ -174,13 +174,24 @@ class PostController extends Controller
 
   function postsOfLocation(Request $request)
   {
-    if ($request->country_id) {
-      $posts = Country::with('cities.areas.posts')->where('id', $request->country_id)->get();
-      $posts =  $posts->cities->areas;
-    } else if ($request->city_id)
-      $posts = City::where('id', $request->city_id)->areas->posts->get();
-    else if ($request->area_id)
-      $posts = Post::where('area_id', $request->area_id)->get();
+    $country_id = $request->country_id;
+    $city_id = $request->city_id;
+    $area_id = $request->area_id;
+    $posts = Post::whereHas('area', function ($query) use ($country_id, $city_id, $area_id) {
+      if ($country_id) {
+        $query->whereHas('city', function ($query) use ($country_id) {
+          $query->where('country_id', $country_id);
+        });
+      }
+      if ($city_id) {
+        $query->where('city_id', $city_id);
+      }
+      if ($area_id) {
+        $query->where('id', $area_id);
+      }
+    })
+      ->get();
+
     // return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
     return ApiResponseService::successResponse(['posts' => $posts]);
   }
