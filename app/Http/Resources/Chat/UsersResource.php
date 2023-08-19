@@ -24,9 +24,12 @@ class UsersResource extends JsonResource
       $query->where('from_user', $this->to_user)->where('to_user', $this->from_user);
     })->orderBy('created_at', 'desc')->first();
 
+    $name = explode("&&", $user->name);
+    $name = implode(' ', $name);
+
     return [
       "user_id" => $user->id,
-      "user_name" => $user->name,
+      "user_name" => $name,
       "user_image" => $user->image_path,
       "last_message" => $message,
     ];

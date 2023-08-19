@@ -143,7 +143,6 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
   Route::post('chat/message', [ChatController::class, 'store']);
 });
 
-// TODO: remove && from user name in notification
 // ### Route 404 ###
 Route::fallback(function () {
   return ApiResponseService::notFoundResponse("this url is not found");
