@@ -192,8 +192,8 @@ class PostController extends Controller
     })
       ->get();
 
-    // return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
-    return ApiResponseService::successResponse(['posts' => $posts]);
+    return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
+    // return ApiResponseService::successResponse(['posts' => $posts]);
   }
 
   function updateFavoritePost(Request $request)
