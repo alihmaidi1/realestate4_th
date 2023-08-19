@@ -21,9 +21,12 @@ class SearchController extends Controller
         ->join('areas', 'posts.area_id', '=', 'areas.id')
         ->join('cities', 'areas.city_id', '=', 'cities.id')
         ->join('countries', 'cities.country_id', '=', 'countries.id')
-        ->where('areas.name', 'like', '%' . $request->text . '%')
-        ->orWhere('cities.name', 'like', '%' . $request->text . '%')
-        ->orWhere('countries.name', 'like', '%' . $request->text . '%')
+        ->where(function ($q) use ($request) {
+          $q->where('areas.name', 'like', '%' . $request->text . '%')
+            ->orWhere('cities.name', 'like', '%' . $request->text . '%')
+            ->orWhere('countries.name', 'like', '%' . $request->text . '%');
+        })
+        ->where('posts.available', '=', 1)
         ->get();
 
       $user_post_favorite = aauth()->favorite_posts;
