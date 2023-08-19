@@ -13,10 +13,9 @@ class NewReview extends Notification
 {
   use Queueable;
 
-  private $user_id, $post_id;
-  public function __construct($user_id, $post_id = null)
+  private $post_id;
+  public function __construct($post_id = null)
   {
-    $this->user_id = $user_id;
     $this->post_id = $post_id;
   }
 
@@ -33,9 +32,8 @@ class NewReview extends Notification
 
   public function toDatabase($notifiable)
   {
-    $user = User::find($this->user_id);
     return [
-      'message' => 'A new review , by ' . $user->name,
+      'message' => 'A new review , by ' . aauth()->name,
       'post_id' => $this->post_id,
     ];
   }

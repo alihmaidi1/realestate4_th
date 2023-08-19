@@ -36,7 +36,7 @@ class ReviewController extends Controller
       ]);
 
       // Send notification to admin
-      Notification::send(User::first(), new NewReview($request->user_id, $request->post_id));
+      Notification::send(User::first(), new NewReview( $request->post_id));
 
       return ApiResponseService::successResponse(["review" => new ReviewResource($review)]);
     } catch (\Throwable $th) {
