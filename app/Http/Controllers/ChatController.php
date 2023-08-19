@@ -57,7 +57,7 @@ class ChatController extends Controller
       ]);
 
       // Send realtime event to all users
-      event(new ChatMessage($request->content, aauth()->name));
+      event(new ChatMessage($chat));
 
       return ApiResponseService::successResponse(["chat" => $chat]);
     } catch (\Throwable $th) {
