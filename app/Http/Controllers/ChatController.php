@@ -12,7 +12,7 @@ use App\Models\ParentChat;
 
 class ChatController extends Controller
 {
-  function users(Request $request)
+  function users()
   {
     $users = ParentChat::where('from_user', aauth()->id)->orWhere('to_user', aauth()->id)
       ->orderBy('created_at', 'ASC')->get();
@@ -38,13 +38,13 @@ class ChatController extends Controller
   {
     try {
       $user = ParentChat::where(function ($q) use ($request) {
-        $q->where('from_user', $request->user_id)
+        $q->where('from_user', $request->to_user)
           ->where('to_user', aauth()->id);
       })->orWhere(function ($q) use ($request) {
         $q->where('from_user', aauth()->id)
-          ->where('to_user', $request->user_id);
+          ->where('to_user', $request->to_user);
       })->count();
-      if ($user != 1) {
+      if ($user == 0) {
         ParentChat::create([
           'from_user' => aauth()->id,
           'to_user' => $request->to_user,
