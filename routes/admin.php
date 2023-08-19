@@ -93,7 +93,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
 
   // search for countries, cities or areas
   Route::post('/posts-of-location', [PostController::class, 'postsOfLocation']);
-default_ca_bundle()
+
   // Start Catecories
   Route::prefix('categories')->as("category.")->group(function () {
     Route::get('', [CategoryController::class, 'index'])->name('index');
