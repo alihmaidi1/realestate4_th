@@ -28,7 +28,7 @@ class UpdateAdminRequest extends FormRequest
       "name" => "required",
       "email" => "email|unique:users,email," . aauth()->id,
       "phone" => "required",
-      'gender' => 'sometimes|in:male,female,other',
+      'gender' => 'sometimes',
       'role_id' => 'required|exists:roles,id',
       "image" =>  'image',
     ];
