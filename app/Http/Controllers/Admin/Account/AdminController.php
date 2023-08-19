@@ -55,7 +55,12 @@ class AdminController extends Controller
 
   public function update(UpdateAdminRequest $request)
   {
-    return ApiResponseService::successResponse(['user' =>  new UserResource($this->UserRepoInterface->update($request->validated()))]);
+    $user = $this->UserRepoInterface->update($request->validated());
+    if ($request->image) {
+      $user->image_path = uploadImage($request["image"], 'users/' . $user->id, 'attachments');
+      $user->save();
+    }
+    return ApiResponseService::successResponse(['user' =>  new UserResource($user)]);
   }
 
   public function delete(DeleteAdminRequest $request)

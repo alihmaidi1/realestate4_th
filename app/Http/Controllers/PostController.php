@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Api\Admin\Post\StoreRequest;
 use App\Http\Resources\User\post\indexpostResource;
+use App\Models\Category;
+use App\Models\Location\City;
+use App\Models\Location\Country;
 use App\Models\Post;
 use App\Models\PostUser;
 use Illuminate\Http\Request;
@@ -167,6 +170,19 @@ class PostController extends Controller
   {
     $posts = Post::where('category_id', $categoryId)->get();
     return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
+  }
+
+  function postsOfLocation(Request $request)
+  {
+    if ($request->country_id) {
+      $posts = Country::with('cities.areas.posts')->where('id', $request->country_id)->get();
+      $posts =  $posts->cities->areas;
+    } else if ($request->city_id)
+      $posts = City::where('id', $request->city_id)->areas->posts->get();
+    else if ($request->area_id)
+      $posts = Post::where('area_id', $request->area_id)->get();
+    // return ApiResponseService::successResponse(['posts' => indexpostResource::collection($posts)]);
+    return ApiResponseService::successResponse(['posts' => $posts]);
   }
 
   function updateFavoritePost(Request $request)

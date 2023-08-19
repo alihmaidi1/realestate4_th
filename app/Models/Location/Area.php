@@ -2,8 +2,9 @@
 
 namespace App\Models\Location;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Area extends Model
 {
@@ -15,5 +16,10 @@ class Area extends Model
   public function city()
   {
     return $this->belongsTo(City::class);
+  }
+
+  public function posts()
+  {
+    return $this->hasMany(Post::class, "area_id");
   }
 }

@@ -89,6 +89,9 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
   Route::get('/areas-of-city/{cityId?}', [AreaController::class, 'areasOfCity']);
   Route::resource('area', AreaController::class);
 
+  // search for countries, cities or areas
+  Route::post('/posts-of-location', [PostController::class, 'postsOfLocation']);
+
   // Start Catecories
   Route::prefix('categories')->as("category.")->group(function () {
     Route::get('', [CategoryController::class, 'index'])->name('index');

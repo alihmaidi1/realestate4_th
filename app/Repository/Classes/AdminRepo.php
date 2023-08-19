@@ -42,10 +42,6 @@ class AdminRepo implements AdminRepoInterface
       "gender" => $request["gender"],
       "role_id" => $request["role_id"],
     ]);
-    if ($request["image"]) {
-      $user->image_path = uploadImage($request["image"], 'users/' . $user->id, 'attachments');
-      $user->save();
-    }
     return $user;
   }
   // Delete
