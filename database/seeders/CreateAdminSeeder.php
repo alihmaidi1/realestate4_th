@@ -21,6 +21,7 @@ class CreateAdminSeeder extends Seeder
       'is_verified' => true,
       'phone' => '+9639' . $this->generateNumbers(8),
       'role_id' => Role::first()->id,
+      'image_path' => 'default/' . rand(22, 23) . '.jpg',
       'gender' => 'male',
     ]);
 
@@ -31,6 +32,7 @@ class CreateAdminSeeder extends Seeder
       'is_verified' => true,
       'phone' => '+9639' . $this->generateNumbers(8),
       'role_id' => 2,
+      'image_path' => 'default/' . rand(22, 23) . '.jpg',
       'gender' => 'male',
     ]);
   }

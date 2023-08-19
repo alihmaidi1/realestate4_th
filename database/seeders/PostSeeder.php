@@ -34,6 +34,7 @@ class PostSeeder extends Seeder
         'longitude' => mt_rand(99999, 999999999),
         'latitude' => mt_rand(99999, 999999999),
         'description' => "description",
+        'image_main' => 'default/1.jpg',
         'available' => rand(0, 1),
       ]);
 
