@@ -17,7 +17,8 @@ class ReviewController extends Controller
    */
   public function index()
   {
-    return ApiResponseService::successResponse(['reviews' =>  ReviewResource::collection(Review::get())]);
+    return ApiResponseService::successResponse(['reviews' =>  Review::get()]);
+    // return ApiResponseService::successResponse(['reviews' =>  ReviewResource::collection(Review::get())]);
   }
 
 
@@ -36,9 +37,9 @@ class ReviewController extends Controller
       ]);
 
       // Send notification to admin
-      Notification::send(User::first(), new NewReview( $request->post_id));
+      Notification::send(User::first(), new NewReview($request->post_id));
 
-      return ApiResponseService::successResponse(["review" => new ReviewResource($review)]);
+      return ApiResponseService::successResponse(["review" => $review]);
     } catch (\Throwable $th) {
       return ApiResponseService::errorMsgResponse($th->getMessage());
     }
@@ -51,7 +52,8 @@ class ReviewController extends Controller
   {
     $review = Review::find($review);
     if ($review) {
-      return ApiResponseService::successResponse(['review' => new ReviewResource($review)]);
+      // return ApiResponseService::successResponse(['review' => new ReviewResource($review)]);
+      return ApiResponseService::successResponse(['review' => $review]);
     } else {
       return ApiResponseService::notFoundResponse();
     }
