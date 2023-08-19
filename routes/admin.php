@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\Account\Auth\EmailVerificationController;
 use App\Http\Controllers\Admin\Account\Auth\PasswordAdminController;
 use App\Services\ApiResponseService;
 
+use function GuzzleHttp\default_ca_bundle;
+
 // ##### To Guest #####
 Route::post('dashboard/login', [AuthAdminController::class, 'login'])->name('user.login')->middleware('is.verified');
 // To Change Password
@@ -91,7 +93,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
 
   // search for countries, cities or areas
   Route::post('/posts-of-location', [PostController::class, 'postsOfLocation']);
-
+default_ca_bundle()
   // Start Catecories
   Route::prefix('categories')->as("category.")->group(function () {
     Route::get('', [CategoryController::class, 'index'])->name('index');
