@@ -20,6 +20,10 @@ class Chat extends Model
     return $this->belongsTo(User::class, 'to_user');
   }
 
+  protected $casts = [
+    'created_at' => 'date:m/d/Y',
+  ];
+
   protected $appends = ['diffInMinutes'];
 
   public function getDiffInMinutesAttribute()

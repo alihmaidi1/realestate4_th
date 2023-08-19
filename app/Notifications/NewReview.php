@@ -32,8 +32,10 @@ class NewReview extends Notification
 
   public function toDatabase($notifiable)
   {
+    $name = explode("&&", aauth()->name);
+    $name = implode(' ', $name);
     return [
-      'message' => 'A new review , by ' . aauth()->name,
+      'message' => 'A new review , by ' . $name,
       'post_id' => $this->post_id,
     ];
   }
