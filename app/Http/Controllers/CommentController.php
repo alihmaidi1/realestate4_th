@@ -97,4 +97,9 @@ class CommentController extends Controller
     $comment->delete();
     return ApiResponseService::successMsgResponse();
   }
+
+  function commentOfPost($postId)
+  {
+    return ApiResponseService::successResponse(['comments' =>  CommentsResource::collection(Comment::where('parent_id', null)->where('post_id', $postId)->get())]);
+  }
 }

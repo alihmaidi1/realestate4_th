@@ -120,6 +120,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'api.password'])->group(
   Route::post('/update-favorite-posts', [PostController::class, 'updateFavoritePost']);
 
   // Start Comments
+  Route::get('/comments-of-post/{postId?}', [CommentController::class, 'commentOfPost']);
   Route::resource('comments', CommentController::class);
 
   // Start Types
