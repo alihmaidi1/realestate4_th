@@ -25,15 +25,15 @@ echo "clear cache started ..."
 
 
 # php artisan migrate
-php artisan migrate:fresh
+# php artisan migrate:fresh
 
-echo "database fresh"
+# echo "database fresh"
 
 
 
-php artisan db:seed
+# php artisan db:seed
 
-echo "databaase seeding"
+# echo "databaase seeding"
 
 
 php artisan storage:link
