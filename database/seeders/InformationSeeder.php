@@ -18,7 +18,7 @@ class InformationSeeder extends Seeder
     $categories = [
       [
         "name" => "apartment",
-        "image_url" => null,
+        "image_url" => "null",
         "description" => "apartment"
       ],
       [
@@ -46,22 +46,22 @@ class InformationSeeder extends Seeder
       [
         "name" => "price",
         "category_id" => 1,
-        "code" => "0x11111"
+        "code" => "0xe570"
       ],
       [
         "name" => "floor",
         "category_id" => 1,
-        "code" => "0x11111"
+        "code" => "0xe118"
       ],
       [
         "name" => "rooms",
         "category_id" => 1,
-        "code" => "0x11111"
+        "code" => "0xe3da"
       ],
       [
-        "name" => "direction",
+        "name" => "specification",
         "category_id" => 1,
-        "code" => "0x11111"
+        "code" => "0xe1bf"
       ],
       [
         "name" => "price",
@@ -76,7 +76,7 @@ class InformationSeeder extends Seeder
       [
         "name" => "specification",
         "category_id" => 2,
-        "code" => "0x11111"
+        "code" => "0xe1bf"
       ],
       [
         "name" => "price",
@@ -86,12 +86,12 @@ class InformationSeeder extends Seeder
       [
         "name" => "floor",
         "category_id" => 3,
-        "code" => "0x11111"
+        "code" => "0xe118"
       ],
       [
         "name" => "rooms",
         "category_id" => 3,
-        "code" => "0x11111"
+        "code" => "0xe3da"
       ],
       [
         "name" => "swimmingPool",
@@ -111,7 +111,7 @@ class InformationSeeder extends Seeder
       [
         "name" => "floor",
         "category_id" => 4,
-        "code" => "0x11111"
+        "code" => "0xe118"
       ],
       [
         "name" => "storeHouse",
@@ -141,7 +141,7 @@ class InformationSeeder extends Seeder
       [
         "name" => "rooms",
         "category_id" => 5,
-        "code" => "0x11111"
+        "code" => "0xe3da"
       ],
       [
         "name" => "swimmingPool",
