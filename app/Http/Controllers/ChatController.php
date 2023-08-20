@@ -37,6 +37,9 @@ class ChatController extends Controller
   function store(Request $request)
   {
     try {
+      if (!$request->content) {
+        return ApiResponseService::errorMsgResponse("write something");
+      }
       $user = ParentChat::where(function ($q) use ($request) {
         $q->where('from_user', $request->to_user)
           ->where('to_user', aauth()->id);
